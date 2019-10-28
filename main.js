@@ -1,4 +1,5 @@
 const URL = 'db.json';
+const $tBody = document.querySelector('.tbody');
 
 function sendRequest(method, url) {
    return new Promise((resolve, reject) => {
@@ -15,7 +16,7 @@ function sendRequest(method, url) {
          }
       };
       xhr.onerror = () => {
-         reject('Something went wrong');
+         reject('Error: Something went wrong');
       };
    })
 
@@ -24,11 +25,49 @@ function sendRequest(method, url) {
 sendRequest('GET', URL)
    .then(data => {
       return new Promise(resolve => {
-         const t = data.teachers;
-         resolve(t);
+         const arr = data.teachers;
+         resolve(arr);
       });
    })
-   .then(t => {
-      console.log(t);
+   .then(dataArr => {
+      console.log(dataArr);
+      return new Promise(resolve => {
+         dataArr.forEach((item, index) => {
+            let $tr = document.createElement('tr');
+
+            $tr.innerHTML = `<td class="num">${index + 1}</td>
+                             <td class="info">${item.organization}</td>
+                             <td class="info">${item.territory}</td>
+                             <td class="info">${item.location}</td>
+                             <td class="info">${item.fullname}</td>
+                             <td class="info">${item.birthdate}</td>`
+
+            $tBody.insertAdjacentElement('beforeend', $tr);
+         });
+         resolve(dataArr);
+      });
    })
+    .then(finalArr => {
+       const $input = document.querySelector('.input');
+
+       $input.addEventListener('input', () => {
+          let val = $input.value.trim();
+          const $allTr = document.querySelectorAll('tr');
+
+          if (val !== '') {
+             $allTr.forEach(item => {
+                if (item.innerHTML.indexOf(val) === -1) {
+                   item.classList.add('hide');
+                } else {
+                   item.classList.remove('hide');
+                }
+             });
+          } else {
+             $allTr.forEach(item => item.classList.remove('hide'));
+          }
+
+          console.log($allTr.length);
+
+       });
+    })
    .catch(err => console.error(err));

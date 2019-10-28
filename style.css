@@ -1,0 +1,8 @@
+td.info {
+   width: 200px;
+   padding: 5px 5px;
+}
+
+tr.hide {
+   display: none;
+}
