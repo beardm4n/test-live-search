@@ -1,4 +1,4 @@
-# test.github.io
+# Test
 
 ### ***Тестовое задание***
-##### *Чтобы просмотреть, перейдите по ссылке <https://beardm4n.github.io/test.github.io/>
+##### Чтобы просмотреть, перейдите по ссылке <https://beardm4n.github.io/test/>
