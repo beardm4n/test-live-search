@@ -1,8 +1,21 @@
-td.info {
-   width: 200px;
-   padding: 5px 5px;
+.container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
 tr.hide {
    display: none;
+}
+
+.basic-url {
+   font-family: 'Playfair Display', serif;
+   font-size: 50px;
+   margin-bottom: 5px;
+}
+
+.form-control {
+   width: 500px;
+   margin-bottom: 10px;
 }

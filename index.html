@@ -4,16 +4,21 @@
    <meta charset="UTF-8">
    <title>Test</title>
    <link rel="stylesheet" href="reset.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <label for="search">School search
-      <input type="text" class="input" id="search">
-   </label>
+   <div class="container">
 
-   <table class="table">
-      <tbody class="tbody"></tbody>
-   </table>
+      <label for="search" class="basic-url">School search</label>
+      <input type="text" class="form-control input" id="search" placeholder="пример: школа" autofocus>
+
+      <table class="table">
+         <tbody class="tbody"></tbody>
+      </table>
+
+   </div>
 
    <script src="main.js"></script>
 </body>

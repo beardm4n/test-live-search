@@ -19,7 +19,6 @@ function sendRequest(method, url) {
          reject('Error: Something went wrong');
       };
    })
-
 }
 
 sendRequest('GET', URL)
@@ -31,43 +30,37 @@ sendRequest('GET', URL)
    })
    .then(dataArr => {
       console.log(dataArr);
-      return new Promise(resolve => {
-         dataArr.forEach((item, index) => {
-            let $tr = document.createElement('tr');
 
-            $tr.innerHTML = `<td class="num">${index + 1}</td>
-                             <td class="info">${item.organization}</td>
-                             <td class="info">${item.territory}</td>
-                             <td class="info">${item.location}</td>
-                             <td class="info">${item.fullname}</td>
-                             <td class="info">${item.birthdate}</td>`
+      dataArr.forEach((item, index) => {
+         let $tr = document.createElement('tr');
 
-            $tBody.insertAdjacentElement('beforeend', $tr);
-         });
-         resolve(dataArr);
+         $tr.innerHTML = `<td class="num">${index + 1}</td>
+                          <td class="info">${item.organization}</td>
+                          <td class="info">${item.territory}</td>
+                          <td class="info">${item.location}</td>
+                          <td class="info">${item.fullname}</td>
+                          <td class="info">${item.birthdate}</td>`;
+
+         $tBody.insertAdjacentElement('beforeend', $tr);
+      });
+
+      const $input = document.querySelector('.input');
+
+      $input.addEventListener('input', () => {
+         let val = $input.value.trim();
+         const $allTr = document.querySelectorAll('tr');
+
+         if (val !== '') {
+            $allTr.forEach(item => {
+               if (item.innerText.toLowerCase().indexOf(val) === -1) {
+                  item.classList.add('hide');
+               } else {
+                  item.classList.remove('hide');
+               }
+            });
+         } else {
+            $allTr.forEach(item => item.classList.remove('hide'));
+         }
       });
    })
-    .then(finalArr => {
-       const $input = document.querySelector('.input');
-
-       $input.addEventListener('input', () => {
-          let val = $input.value.trim();
-          const $allTr = document.querySelectorAll('tr');
-
-          if (val !== '') {
-             $allTr.forEach(item => {
-                if (item.innerHTML.indexOf(val) === -1) {
-                   item.classList.add('hide');
-                } else {
-                   item.classList.remove('hide');
-                }
-             });
-          } else {
-             $allTr.forEach(item => item.classList.remove('hide'));
-          }
-
-          console.log($allTr.length);
-
-       });
-    })
    .catch(err => console.error(err));
