@@ -6,7 +6,6 @@ function sendRequest(method, url) {
       const xhr = new XMLHttpRequest();
 
       xhr.open(method, url);
-      xhr.send();
       xhr.onload = () => {
          if (xhr.status >= 400) {
             reject(`Error: status ${xhr.status}`);
@@ -18,6 +17,7 @@ function sendRequest(method, url) {
       xhr.onerror = () => {
          reject('Error: Something went wrong');
       };
+      xhr.send();
    })
 }
 
